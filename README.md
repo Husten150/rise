@@ -23,6 +23,7 @@ Browse and analyze robust, production-grade templates for Soroban contracts:
 * **Constant Product AMM:** Implements token pools, `swap` operations, and liquidity calculations (`x * y = k`).
 * **Multi-Sig Escrow:** Handles multi-signer conditional release rules with explicit expiration constraints.
 * **Oracle Client Caller:** Demystifies cross-contract reading of price feeds and off-chain anchor points.
+* **Buggy Escrow (Error Demo):** An intentionally syntax-error-ridden contract template designed to demonstrate compiling failure and compiler diagnostics.
 * **Interactive Parameters:** Tweak variables directly in the UI to see how parameters impact contract interfaces and entry points.
 
 ### 2. 🕸️ Inter-Contract Map (`InterContractVisualizer`)

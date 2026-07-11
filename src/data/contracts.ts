@@ -403,5 +403,43 @@ impl OracleRouterContract {
         defaultArgs: { oracle: 'CC6X78RR..._ORACLE_CONTRACT', asset_sell: 'XLM', asset_buy: 'USDC', min_ratio: '120' }
       }
     ]
+  },
+  {
+    id: 'buggy_contract',
+    name: 'Buggy Escrow (Error-Handling Demo)',
+    icon: 'AlertTriangle',
+    description: 'An intentional syntax-error-ridden contract template designed to demonstrate compiling failure and debugging workflows in the console.',
+    code: `// Intentionally Broken Soroban Contract for Error Testing
+use soroban_sdk::{contract, contractimpl, Address, Env};
+
+#[contract]
+pub struct BrokenContract;
+
+#[contractimpl]
+impl BrokenContract {
+    pub fn run_execution(env: Env, caller: Address) {
+        caller.require_auth();
+        
+        // This line contains an unresolved macro invocation that triggers compile panic!
+        panic_now!("Explicit developer bug simulated!");
+    }
+}`,
+    language: 'rust',
+    storageTypes: {
+      instance: ['unresolved_key'],
+      temporary: [],
+      persistent: []
+    },
+    functions: [
+      {
+        name: 'run_execution',
+        description: 'Triggers a broken execution routine containing compiler bugs.',
+        parameters: [
+          { name: 'caller', type: 'Address', description: 'User attempting execution', placeholder: 'G...CALLER' }
+        ],
+        returns: 'void',
+        defaultArgs: { caller: 'GD7Y2O3C..._CALLER' }
+      }
+    ]
   }
 ];
