@@ -23,7 +23,7 @@ export default function SandboxLedger() {
   const [txStatusMsg, setTxStatusMsg] = useState<{ status: 'success' | 'error' | 'loading' | 'idle'; msg: string }>({ status: 'idle', msg: '' });
 
   // Stream Ref
-  const streamIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const streamIntervalRef = useRef<number | null>(null);
 
   // Generate initial mock data on mount
   useEffect(() => {
