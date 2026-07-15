@@ -197,7 +197,7 @@ export default function ContractWorkspace({ onDeployRequest, onRunTestRequest }:
             <div className="flex items-center gap-2">
               <Code className="w-4 h-4 text-sky-400" />
               <span className="font-mono text-xs text-sky-400 font-semibold">{selectedContract.id}/src/lib.rs</span>
-              <span className="bg-slate-850 text-sky-300 text-[10px] font-mono px-2 py-0.5 rounded border border-slate-800 uppercase">
+              <span className="bg-slate-800 text-sky-300 text-[10px] font-mono px-2 py-0.5 rounded border border-slate-800 uppercase">
                 {selectedContract.language}
               </span>
             </div>
