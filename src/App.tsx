@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { TabType, SmartContract } from './types';
 import ContractWorkspace from './components/ContractWorkspace';
 import InterContractVisualizer from './components/InterContractVisualizer';
@@ -7,6 +7,7 @@ import TestingRunner from './components/TestingRunner';
 import DeploymentWorkflow from './components/DeploymentWorkflow';
 import CicdRunner from './components/CicdRunner';
 import ArchitectureDocs from './components/ArchitectureDocs';
+import WalletConnector from './components/WalletConnector';
 import { 
   Code, Network, FlaskConical, Play, Cpu, Layers, HelpCircle, 
   Terminal, Activity, Globe, Menu, X, CheckCircle, Info 
@@ -19,6 +20,7 @@ export default function App() {
   const [selectedContractForTesting, setSelectedContractForTesting] = useState<string | undefined>(undefined);
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [connectedWallet, setConnectedWallet] = useState<string | null>(null);
 
   const handleDeployRequest = (contract: SmartContract) => {
     setSelectedContractForDeploy(contract);
@@ -29,6 +31,14 @@ export default function App() {
     setSelectedContractForTesting(contractId);
     setActiveTab('testing');
   };
+
+  const handleWalletConnect = useCallback((publicKey: string) => {
+    setConnectedWallet(publicKey);
+  }, []);
+
+  const handleWalletDisconnect = useCallback(() => {
+    setConnectedWallet(null);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
@@ -63,6 +73,13 @@ export default function App() {
               <h1 className="text-sm font-bold tracking-widest uppercase text-sky-400">Stellar Dev Portal</h1>
               <p className="text-[10px] text-slate-500 uppercase tracking-tighter font-mono">SOROBAN SMART CONTRACT STUDIO</p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <WalletConnector
+              onConnect={handleWalletConnect}
+              onDisconnect={handleWalletDisconnect}
+            />
           </div>
 
           {/* Desktop Tab Selector */}

@@ -1,10 +1,10 @@
-export type TabType = 
-  | 'contracts' 
-  | 'visualizer' 
-  | 'sandbox' 
-  | 'testing' 
-  | 'deployment' 
-  | 'cicd' 
+export type TabType =
+  | 'contracts'
+  | 'visualizer'
+  | 'sandbox'
+  | 'testing'
+  | 'deployment'
+  | 'cicd'
   | 'docs';
 
 export interface SmartContract {
@@ -35,7 +35,7 @@ export interface LedgerBlock {
   hash: string;
   timestamp: string;
   transactionCount: number;
-  totalFees: string; // in XLM
+  totalFees: string;
   operationsCount: number;
 }
 
@@ -81,6 +81,22 @@ export interface PipelineStage {
   id: string;
   name: string;
   status: 'idle' | 'running' | 'success' | 'failed';
-  duration: number; // in seconds
+  duration: number;
   logs: string[];
+}
+
+export interface WalletState {
+  connected: boolean;
+  publicKey: string | null;
+  network: string | null;
+}
+
+export interface ContractDeployment {
+  network: string;
+  contractId: string;
+  wasmHash: string;
+  deployer: string;
+  timestamp: string;
+  transactionFee: string;
+  transactionHash: string;
 }
