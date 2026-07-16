@@ -18,8 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - run: npm ci
+      - run: npm install
       - run: npx tsc --noEmit
       - run: npx vite build
 
@@ -32,8 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - run: npm ci
+      - run: npm install
       - run: npx vite build
 
   build:
@@ -45,8 +43,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - run: npm ci
+      - run: npm install
       - run: npx vite build
       - uses: actions/upload-artifact@v4
         with:
